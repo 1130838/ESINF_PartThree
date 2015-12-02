@@ -1,0 +1,6 @@
+A,VCA,TaskA,1,week,30,112
+B,FCA,TaskB,4,week,2500
+C,FCA,TaskC,2,week,1250,B
+D,VCA,TaskD,3,week,30,162,A
+
+
