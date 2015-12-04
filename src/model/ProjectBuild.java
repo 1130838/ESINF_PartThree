@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 /**
  * Created by bruno.devesa on 03/12/2015.
  */
-public class ProjectAnalysis {
+public class ProjectBuild {
 
     private TreeFinishedProject projectTree;
     private TreeFinishedActivity activityTree;
