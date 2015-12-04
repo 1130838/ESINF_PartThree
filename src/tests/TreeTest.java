@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import TREE.TREE;
+import treebase.TREE;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;

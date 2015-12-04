@@ -1,0 +1,4 @@
+P1,Keyboards,15,6
+P2,Guitar,150,20
+P3,Bass,200,30
+P4,Drums,11,7

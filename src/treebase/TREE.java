@@ -1,6 +1,6 @@
-package TREE;
+package treebase;
 
-import BST.BST;
+import treebase.BST;
 
 import java.util.ArrayList;
 import java.util.HashMap;

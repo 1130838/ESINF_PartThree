@@ -2,7 +2,7 @@
 package tests;
 
 
-import BST.BST;
+import treebase.BST;
 import org.junit.Before;
 import org.junit.Test;
 
