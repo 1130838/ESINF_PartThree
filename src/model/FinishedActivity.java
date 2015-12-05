@@ -13,10 +13,10 @@ public class FinishedActivity implements Comparable<FinishedActivity> {
     private int duration;
     private int delay;
 
-    public FinishedActivity(String projReference, String activCode, String activType, int duration, int delay) {
+    public FinishedActivity(String projReference, String activityCode, String activityType, int duration, int delay) {
         this.projectReference = projReference;
-        this.activityCode = activCode;
-        this.activityType = activType;
+        this.activityCode = activityCode;
+        this.activityType = activityType;
         this.duration = duration;
         this.delay = delay;
     }

@@ -5,11 +5,15 @@ import utils.FileImport;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by bruno.devesa on 03/12/2015.
  */
 public class TreeFinishedProject extends BST<FinishedProject> {
+
+    public TreeFinishedProject() {
+    }
 
     /**
      * Constructor of the tree
@@ -37,5 +41,28 @@ public class TreeFinishedProject extends BST<FinishedProject> {
             super.insert(new FinishedProject(fProj));
         }
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TreeFinishedProject other = (TreeFinishedProject) obj;
+
+        Iterator otherIt = other.inOrder().iterator();
+        Iterator instanceIt = this.inOrder().iterator();
+        while (otherIt.hasNext()) {
+            if (!otherIt.next().equals(instanceIt.next())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
 }

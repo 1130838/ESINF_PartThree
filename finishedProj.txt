@@ -1,0 +1,4 @@
+P1,Carro,14,2
+P2,Casa,150,10
+P3,Software,200,30
+P4,Telemovel,11,7
