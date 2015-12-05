@@ -39,39 +39,52 @@ public class ProjectBuild {
 
     }
 
-        public Map<String, List<FinishedActivity>> lateAtivitiesOf2Projects (FinishedProject p1, FinishedProject p2){
+    public Map<String, List<FinishedActivity>> lateActivitiesOfTwoProjects(FinishedProject p1, FinishedProject p2) {
 
-            if (p1.getDelay() == 0 || p2.getDelay() == 0) {/*both projects must have delay*/
+        if (p1.getDelay() == 0 || p2.getDelay() == 0) { /*both projects must have delay*/
 
-                return null;
-            }
-
-            /* Map with : Key = the activity  type;  List = activities of that type*/
-            Map<String, List<FinishedActivity>> finalTable = new HashMap<>();
-
-            Map<String, List<FinishedActivity>> p1Table = activityTree.allActivitiesByTypeFromAProject(p1);
-
-            Map<String, List<FinishedActivity>> p2Table = activityTree.allActivitiesByTypeFromAProject(p2);
-
-            for (Map.Entry<String, List<FinishedActivity>> entry : p1Table.entrySet()) {
-                String acType = entry.getKey();
-                List<FinishedActivity> listact = entry.getValue();
-
-            /* if the project 2 has any activity with the same type then add to the final table the content of both projects*/
-                if (p2Table.containsKey(acType)) {
-                    List<FinishedActivity> finalList = new ArrayList<>(); /*new List for the finalTable*/
-
-                    finalList.addAll(entry.getValue()); /*add p1 list*/
-
-                    finalList.addAll(p2Table.get(acType));/*add p2 list*/
-
-                    finalTable.put(acType, finalList);/*put the list in the final table*/
-
-                }
-
-            }
-            return finalTable;
+            return null;
         }
 
+            /* Map with : Key = the activity  type;  List = activities of that type*/
+        Map<String, List<FinishedActivity>> finalMap = new HashMap<>();
 
+        Map<String, List<FinishedActivity>> p1Table = activityTree.allActivitesFromAproject(p1);
+
+        Map<String, List<FinishedActivity>> p2Table = activityTree.allActivitesFromAproject(p2);
+
+        // iterate through Map of 1st activity
+        for (Map.Entry<String, List<FinishedActivity>> entry1 : p1Table.entrySet()) {
+            String acType = entry1.getKey();
+            List<FinishedActivity> listact = entry1.getValue();
+
+            /* if the project 2 has any activity with the same type then add to the final table the content of both projects*/
+            //  String teste =  p1Table.get(0).get(0).getActivityType();
+
+            // iterate through Map of 2nd activity
+            for (Map.Entry<String, List<FinishedActivity>> entry2 : p2Table.entrySet()) {
+                String acType2 = entry2.getKey();
+                List<FinishedActivity> listact2 = entry2.getValue();
+
+                // check if Keys are the same
+                if (acType.equalsIgnoreCase(acType2)) {
+
+                    int delay1 = listact.get(0).getDelay();
+                    int delay2 = listact2.get(0).getDelay();
+
+                    // check delays. the bigger activity delay is filled in the final Map
+                    if (delay1 >= delay2) {
+                        finalMap.put(acType, listact);/*put the list in the final table*/
+                        //finalList.addAll(listact); /*add p1 list*/
+                    } else {
+                        finalMap.put(acType, listact2);/*put the list in the final table*/
+
+                    }
+                }
+            }
+        }
+        return finalMap;
     }
+
+
+}

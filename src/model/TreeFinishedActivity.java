@@ -24,23 +24,24 @@ public class TreeFinishedActivity extends BST {
     public TreeFinishedActivity(String fileName) throws FileNotFoundException {
         ArrayList<ArrayList<String>> activities = importDataFromFile(fileName);
 
+
         for(ArrayList<String> activ : activities){
             insert(new FinishedActivity(activ.get(0), activ.get(1), activ.get(2), Integer.parseInt(activ.get(3)), Integer.parseInt(activ.get(4))));
         }
     }
 
-
-    public Map<String, List<FinishedActivity>> allActivitiesByTypeFromAProject(FinishedProject finishedProject) {
+    public Map<String, List<FinishedActivity>> PrintProjectsAndActivitiesByOrderOfDelayTime(FinishedProject finishedProject) {
 
         if (finishedProject.getProjectReference() == null) {
             return null;
         }
 
-        Iterable<FinishedActivity> allActivities = super.preOrder();//a lista de nós
+        Iterable<FinishedActivity> allActivities = super.inOrder();
 
-        Iterator<FinishedActivity> it = allActivities.iterator();      //iterador dos nós
+        Iterator<FinishedActivity> it = allActivities.iterator();
 
         Map<String, List<FinishedActivity>> allActivitiesMap = new HashMap<>();
+
 
         while (it.hasNext()) {
             FinishedActivity temp = it.next();
@@ -64,23 +65,23 @@ public class TreeFinishedActivity extends BST {
 
 
 
-/*    public Map<String, List<FinishedActivity>> allActivitiesByTypeFromAProject(FinishedProject project) {
+    public Map<String, List<FinishedActivity>> allActivitesFromAproject(FinishedProject finishedProject) {
 
-        if (project == null) {
+        if (finishedProject.getProjectReference() == null) {
             return null;
         }
-        String projectReference = project.getProjectReference();
 
-        Iterable<FinishedActivity> allActivities = super.preOrder();//a lista de nós
+        Iterable<FinishedActivity> allActivities = super.preOrder();
 
-        Iterator<FinishedActivity> it = allActivities.iterator();      //iterador dos nós
+        Iterator<FinishedActivity> it = allActivities.iterator();
 
         Map<String, List<FinishedActivity>> allActivitiesMap = new HashMap<>();
 
+
         while (it.hasNext()) {
             FinishedActivity temp = it.next();
-            if (temp.getDelay() > 0 && temp.getProjectReference().equalsIgnoreCase(projectReference)) {
-                *//*if the activity Type is already in the List, just add*//*
+            if (temp.getProjectReference().equalsIgnoreCase(finishedProject.getProjectReference())) {
+                /*if the activity Type is already in the List, just add*/
                 String activityType = temp.getActivityType();
                 if (allActivitiesMap.containsKey(activityType)) {
                     allActivitiesMap.get(activityType).add(temp);
@@ -95,7 +96,8 @@ public class TreeFinishedActivity extends BST {
         }
 
         return allActivitiesMap;
-    }*/
+    }
+
 
 
     @Override

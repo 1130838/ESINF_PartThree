@@ -1,4 +1,5 @@
-P1,Carro,14,2
-P2,Casa,150,10
-P3,Software,200,30
-P4,Telemovel,11,7
+P1,Edificio,250,2
+P2,Habitacao,100,10
+P3,Ponte,80,30
+P4,Armazem,90,7
+

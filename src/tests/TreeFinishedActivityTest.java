@@ -26,7 +26,7 @@ public class TreeFinishedActivityTest {
     }
 
     @Test
-    public void testAllActivitiesByTypeOfProject() throws Exception {
+    public void testPrintProjectsAndActivitiesByOrderOfDelayTime() throws Exception {
 
         // import project from file
 
@@ -40,7 +40,7 @@ public class TreeFinishedActivityTest {
         TreeFinishedProject treeFinishedProject = projectBuild.getProjectTree();
         TreeFinishedActivity treeFinishedActivity = projectBuild.getActivityTree();
 
-        // get the finishedProjectsTree in order
+        // get the finishedProjectsTree in order - IMPORTANT: inOrder() gives already the project ordered by its delay time
         Iterable<FinishedProject> it = treeFinishedProject.inOrder();
 
         // create the allActivitiesFromProject
@@ -57,6 +57,9 @@ public class TreeFinishedActivityTest {
         // create a list of Maps
         List<Map<String, List<FinishedActivity>>> finalList = new ArrayList<>();
 
+        // creates a list of Projects
+        List<FinishedProject> finishedProjectList = new ArrayList<>();
+
         // iterate the created list to create each project of the tree
         for (int i = 0; i < copy.size(); i++) {
 
@@ -64,23 +67,32 @@ public class TreeFinishedActivityTest {
                     new FinishedProject(copy.get(i).getProjectReference(), copy.get(i).getProjectType(),
                             copy.get(i).getCompletionTime(), copy.get(i).getDelay());
 
+            // adds project to the list
+            finishedProjectList.add(finishedProjectTemp);
+
+           // System.out.println("Project " + finishedProjectTemp.getProjectReference() + "Project Delay = " + finishedProjectTemp.getDelay());
+
             // fill the allActivitiesFromProject with the method
-            allActivitiesFromProject = treeFinishedActivity.allActivitiesByTypeFromAProject(finishedProjectTemp);
+            allActivitiesFromProject = treeFinishedActivity.PrintProjectsAndActivitiesByOrderOfDelayTime(finishedProjectTemp);
+
 
             // add to the List of Maps
             finalList.add(allActivitiesFromProject);
 
         }
 
-        // print the result
+        // print the results
         System.out.println("## testAllActivitiesByTypeOfProject Test ##");
 
 
-        System.out.println("-- activities of same type in project --");
+        System.out.println("-- Print all projects and its activities by order of project delay time --");
         for (int i = 0; i < finalList.size(); i++) {
 
+            System.out.println("Project Ref : " + finishedProjectList.get(i).getProjectReference() + " Project Delay = " + finishedProjectList.get(i).getDelay());
+
             for (Map.Entry<String, List<FinishedActivity>> entry : finalList.get(i).entrySet()) {
-                System.out.println(" prj.Ref = " + entry.getValue().get(0).getProjectReference() + "/" + entry.getKey() + "/" + " delay = " + entry.getValue().get(0).getDelay());
+                System.out.println("   prj.Ref = " + entry.getValue().get(0).getProjectReference() +
+                        "/" + entry.getKey() + "/" + " delay = " + entry.getValue().get(0).getDelay());
             }
             System.out.println("---------------------------------------------------");
         }
