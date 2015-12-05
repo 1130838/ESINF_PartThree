@@ -30,9 +30,9 @@ public class TreeFinishedActivity extends BST {
     }
 
 
-    public Map<String, List<FinishedActivity>> allActivitiesByTypeFromAProject(String projectReference) {
+    public Map<String, List<FinishedActivity>> allActivitiesByTypeFromAProject(FinishedProject finishedProject) {
 
-        if (projectReference == null) {
+        if (finishedProject.getProjectReference() == null) {
             return null;
         }
 
@@ -44,7 +44,7 @@ public class TreeFinishedActivity extends BST {
 
         while (it.hasNext()) {
             FinishedActivity temp = it.next();
-            if (temp.getProjectReference().equalsIgnoreCase(projectReference)) {
+            if (temp.getProjectReference().equalsIgnoreCase(finishedProject.getProjectReference())) {
                 /*if the activity Type is already in the List, just add*/
                 String activityType = temp.getActivityType();
                 if (allActivitiesMap.containsKey(activityType)) {

@@ -49,9 +49,9 @@ public class ProjectBuild {
             /* Map with : Key = the activity  type;  List = activities of that type*/
             Map<String, List<FinishedActivity>> finalTable = new HashMap<>();
 
-            Map<String, List<FinishedActivity>> p1Table = activityTree.allActivitiesByTypeFromAProject(p1.getProjectReference());
+            Map<String, List<FinishedActivity>> p1Table = activityTree.allActivitiesByTypeFromAProject(p1);
 
-            Map<String, List<FinishedActivity>> p2Table = activityTree.allActivitiesByTypeFromAProject(p2.getProjectReference());
+            Map<String, List<FinishedActivity>> p2Table = activityTree.allActivitiesByTypeFromAProject(p2);
 
             for (Map.Entry<String, List<FinishedActivity>> entry : p1Table.entrySet()) {
                 String acType = entry.getKey();

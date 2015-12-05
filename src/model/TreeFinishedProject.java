@@ -6,11 +6,16 @@ import utils.FileImport;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by bruno.devesa on 03/12/2015.
  */
 public class TreeFinishedProject extends BST<FinishedProject> {
+
+
+
+   // List<ArrayList<String>> finishedProjectList;
 
     public TreeFinishedProject() {
     }
@@ -27,6 +32,11 @@ public class TreeFinishedProject extends BST<FinishedProject> {
         }
     }
 
+  /*  public List<ArrayList<String>> getFinishedProjectList() {
+        return finishedProjectList;
+    }*/
+
+
     /**
      * Import data from the file (parameter), create the FinishedProject object
      * and insert them in the tree
@@ -39,6 +49,8 @@ public class TreeFinishedProject extends BST<FinishedProject> {
 
         for (ArrayList<String> fProj : fProjList) {
             super.insert(new FinishedProject(fProj));
+
+            //finishedProjectList.add(fProj);
         }
     }
 
