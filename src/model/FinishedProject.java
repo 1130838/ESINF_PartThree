@@ -14,7 +14,7 @@ public class FinishedProject implements Comparable<FinishedProject>{
     private int delay;
 
     /**
-     *
+     * Constructor of the class
      * @param projectReference
      * @param projectType
      * @param completionTime
@@ -27,6 +27,10 @@ public class FinishedProject implements Comparable<FinishedProject>{
         this.delay = delay;
     }
 
+    /**
+     * Constructor of the class
+     * @param fProj
+     */
     FinishedProject(ArrayList<String> fProj) {
         this.projectReference = fProj.get(0);
         this.projectType = fProj.get(1);
@@ -102,6 +106,9 @@ public class FinishedProject implements Comparable<FinishedProject>{
      * @return
      */
     @Override
+    /**
+     * compareTo method to compare delay values
+     */
     public int compareTo(FinishedProject t) {
         if (this.delay == t.getDelay()) {
             String thisProj = this.projectReference;

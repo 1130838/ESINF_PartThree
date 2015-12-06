@@ -14,9 +14,6 @@ import java.util.List;
 public class TreeFinishedProject extends BST<FinishedProject> {
 
 
-
-   // List<ArrayList<String>> finishedProjectList;
-
     public TreeFinishedProject() {
     }
 
@@ -31,10 +28,6 @@ public class TreeFinishedProject extends BST<FinishedProject> {
             importData(filename);
         }
     }
-
-  /*  public List<ArrayList<String>> getFinishedProjectList() {
-        return finishedProjectList;
-    }*/
 
 
     /**
@@ -56,6 +49,9 @@ public class TreeFinishedProject extends BST<FinishedProject> {
 
 
     @Override
+    /**
+     * Method to perform the equality of an tree objects
+     */
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;

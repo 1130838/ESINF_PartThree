@@ -71,20 +71,6 @@ public class TREE<E extends Comparable<E>> extends BST<E> {
                     copyRec(node.getRight()))); // o nó raiz é o último a ser criado, dado que para fazer o new Node, tenho de ter a esquerda e a direita antes
         }
         return null;
-        /* PODIA SER - em que temos 2 condições de paragem
-        
-         if (node == null) {
-         return node;
-         }
-         if (node.getLeft() == null && node.getRight() == null){
-         return null;
-         }
-        
-         return (new Node(node.getElement(), //retornno um novo nó que tem o elemento nó e à esquerda tem a cópia recursiva e à direita a cópia recursiva
-         copyRec(node.getLeft()),
-         copyRec(node.getRight()))); // o nó raiz é o último a ser criado, dado que para fazer o new Node, tenho de ter a esquerda e a direita antes
-        
-         }*/
 
     }
 
@@ -129,7 +115,7 @@ public class TREE<E extends Comparable<E>> extends BST<E> {
                 cur = cur.getLeft();
 
             }
-            canRemove = true; //enable remove. POdia verificar se o elemento corrente (cur) é null e portanto podeia remover
+            canRemove = true; //enable remove. Podia verificar se o elemento corrente (cur) é null e portanto poderia remover
             return curElement;
         }
 

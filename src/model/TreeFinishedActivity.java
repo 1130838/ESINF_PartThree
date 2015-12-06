@@ -11,7 +11,9 @@ import static utils.FileImport.importDataFromFile;
 public class TreeFinishedActivity extends BST {
 
 
-
+    /**
+     * Empty constructor for testing purposes
+     */
     public TreeFinishedActivity() {
     }
 
@@ -30,6 +32,11 @@ public class TreeFinishedActivity extends BST {
         }
     }
 
+    /**
+     * Method to return all the projectd activities ordered by its delay time wich is performed by inOrder() BST method
+     * @param finishedProject
+     * @return allActivitiesMap
+     */
     public Map<String, List<FinishedActivity>> PrintProjectsAndActivitiesByOrderOfDelayTime(FinishedProject finishedProject) {
 
         if (finishedProject.getProjectReference() == null) {
@@ -64,7 +71,11 @@ public class TreeFinishedActivity extends BST {
     }
 
 
-
+    /**
+     * Method to return all activities from a project in preOrder ( there will be no ordenation)
+     * @param finishedProject
+     * @return allActivitiesMap
+     */
     public Map<String, List<FinishedActivity>> allActivitesFromAproject(FinishedProject finishedProject) {
 
         if (finishedProject.getProjectReference() == null) {
@@ -99,8 +110,10 @@ public class TreeFinishedActivity extends BST {
     }
 
 
-
     @Override
+    /**
+     * Method to perform the equality of an tree objects
+     */
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;

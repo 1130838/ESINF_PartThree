@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.*;
 
 /**
@@ -24,6 +26,58 @@ public class ProjectBuildTest {
     @Before
     public void setUp() throws Exception {
 
+
+        ArrayList<FinishedActivity> actList = new ArrayList<>();
+        actList.add(new FinishedActivity("P1", "A", "Analise", 2, 4));
+        actList.add(new FinishedActivity("P1", "B", "Escavacao", 2, 0));
+        actList.add(new FinishedActivity("P1", "C", "Fundacoes", 5, 3)); //
+        actList.add(new FinishedActivity("P1", "D", "Estrutura", 1, 0));
+        actList.add(new FinishedActivity("P1", "E", "Alvenarias", 2, 3));
+        actList.add(new FinishedActivity("P1", "F", "Carpintarias", 3, 8));
+        actList.add(new FinishedActivity("P1", "G", "Acabamentos", 1, 0));
+        actList.add(new FinishedActivity("P1", "G", "Documentacao", 1, 0));
+
+        actList.add(new FinishedActivity("P2", "F", "Analise", 10, 1));
+        actList.add(new FinishedActivity("P2", "H", "Escavacao", 120, 12));
+        actList.add(new FinishedActivity("P2", "I", "Fundacoes", 10, 1));
+        actList.add(new FinishedActivity("P2", "J", "Estrutura", 3, 1));
+        actList.add(new FinishedActivity("P2", "L", "Alvenarias", 2, 1));
+        actList.add(new FinishedActivity("P2", "M", "Carpintarias", 1, 1));
+        actList.add(new FinishedActivity("P2", "N", "Acabamentos", 15, 2));
+        actList.add(new FinishedActivity("P2", "G", "Documentacao", 1, 0));
+
+        actList.add(new FinishedActivity("P3", "F", "Analise", 10, 1));
+        actList.add(new FinishedActivity("P3", "H", "Ensecadeira", 120, 12));
+        actList.add(new FinishedActivity("P3", "I", "Fundacoes", 10, 1));
+        actList.add(new FinishedActivity("P3", "J", "Estrutura", 3, 1));
+        actList.add(new FinishedActivity("P3", "L", "Estrada", 2, 1));
+        actList.add(new FinishedActivity("P3", "M", "Sinalizacao", 1, 1));
+        actList.add(new FinishedActivity("P3", "N", "Acabamentos", 15, 2));
+        actList.add(new FinishedActivity("P3", "G", "Documentacao", 1, 0));
+
+        actList.add(new FinishedActivity("P4", "F", "Analise", 10, 1));
+        actList.add(new FinishedActivity("P4", "H", "Escavacao", 120, 12));
+        actList.add(new FinishedActivity("P4", "I", "Fundacoes", 10, 1));
+        actList.add(new FinishedActivity("P4", "J", "Estrutura", 3, 1));
+        actList.add(new FinishedActivity("P4", "L", "Alvenarias", 2, 1));
+        actList.add(new FinishedActivity("P4", "M", "Carpintarias", 1, 1));
+        actList.add(new FinishedActivity("P4", "N", "Acabamentos", 15, 2));
+        actList.add(new FinishedActivity("P4", "G", "Documentacao", 1, 0));
+
+
+        for (FinishedActivity act : actList)
+            actTree.insert(act);
+
+        ArrayList<FinishedProject> projList = new ArrayList<>();
+        projList.add(new FinishedProject("P1", "Edificio", 250, 2));
+        projList.add(new FinishedProject("P2", "Habitacao", 100, 10));
+        projList.add(new FinishedProject("P3", "Ponte", 80, 30));
+        projList.add(new FinishedProject("P4", "Armazem", 90, 7));
+
+        for (FinishedProject proj : projList)
+            projTree.insert(proj);
+
+
     }
 
     @After
@@ -32,47 +86,14 @@ public class ProjectBuildTest {
     }
 
     @Test
+    /**
+     * This test pretends to validate the importation of the project and its activities data from the texts files.
+     * The test is performed asserting the results from the expected ones (hardcoded).
+     */
     public void testImportData() throws Exception {
 
 
-        ArrayList<FinishedActivity> actList = new ArrayList<>();
-        actList.add(new FinishedActivity("P1", "A", "Estrutura", 2, 0));
-        actList.add(new FinishedActivity("P1", "B", "Montagem", 5, 0));
-        actList.add(new FinishedActivity("P1", "C", "Testes", 1, 0));
-        actList.add(new FinishedActivity("P1", "D", "Interiores", 2, 0));
-        actList.add(new FinishedActivity("P1", "E", "Pintura", 3, 0));
-        actList.add(new FinishedActivity("P1", "F", "Acabamento", 1, 0));
-        actList.add(new FinishedActivity("P2", "A", "Fundacoes", 10, 1));
-        actList.add(new FinishedActivity("P2", "B", "Estrutura", 30, 3));
-        actList.add(new FinishedActivity("P2", "C", "Montagem", 46, 3));
-        actList.add(new FinishedActivity("P2", "D", "Especialidades", 15, 2));
-        actList.add(new FinishedActivity("P2", "E", "Interiores", 30, 7));
-        actList.add(new FinishedActivity("P2", "F", "Pintura", 10, 1));
-        actList.add(new FinishedActivity("P2", "G", "Acabamento", 9, 2));
-        actList.add(new FinishedActivity("P3", "A", "Requisitos", 30, 3));
-        actList.add(new FinishedActivity("P3", "B", "Implementacao", 120, 12));
-        actList.add(new FinishedActivity("P3", "C", "Testes", 10, 2));
-        actList.add(new FinishedActivity("P3", "D", "Documentacao", 20, 4));
-        actList.add(new FinishedActivity("P4", "A", "Estrutura", 3, 1));
-        actList.add(new FinishedActivity("P4", "B", "Montagem", 4, 2));
-        actList.add(new FinishedActivity("P4", "C", "Testes", 2, 1));
-        actList.add(new FinishedActivity("P4", "D", "Pintura", 1, 2));
-        actList.add(new FinishedActivity("P4", "E", "Expedicao", 1, 1));
-
-        for (FinishedActivity act : actList)
-            actTree.insert(act);
-
-        ArrayList<FinishedProject> projList = new ArrayList<>();
-        projList.add(new FinishedProject("P1", "Carro", 14, 0));
-        projList.add(new FinishedProject("P2", "Casa", 150, 19));
-        projList.add(new FinishedProject("P3", "Software", 200, 21));
-        projList.add(new FinishedProject("P4", "Telemovel", 11, 7));
-
-        for (FinishedProject proj : projList)
-            projTree.insert(proj);
-
-
-        System.out.println("importData");
+        System.out.println("## importData Test ##");
         String projectFileName = "finishedProj";
         String activityFileName = "finishedActivities";
         ProjectBuild instance = new ProjectBuild();
@@ -86,8 +107,12 @@ public class ProjectBuildTest {
     }
 
 
-
     @Test
+    /**
+     * This teste pretends to validade the return of the method wich is suposed to return
+     * the actvity with the biggest dealy from 2 projects with that activity in common.
+     * The test is performed asserting the result values with the expected ones.
+     */
     public void testLateAtivitiesOfTwoProjects() throws Exception {
 
         // import project from file
@@ -117,7 +142,7 @@ public class ProjectBuildTest {
             copy.add(it2.next());
 
         // create a list of Maps
-       // List<Map<String, List<FinishedActivity>>> finalList = new ArrayList<>();
+        // List<Map<String, List<FinishedActivity>>> finalList = new ArrayList<>();
 
         // creates a list of Projects
         List<FinishedProject> finishedProjectList = new ArrayList<>();
@@ -134,7 +159,7 @@ public class ProjectBuildTest {
         }
 
         // choose 2 finished projects with delay from the list
-        Map<String, List<FinishedActivity>> result =  projectBuild.lateActivitiesOfTwoProjects(finishedProjectList.get(0), finishedProjectList.get(1));
+        Map<String, List<FinishedActivity>> resultMap = projectBuild.lateActivitiesOfTwoProjects(finishedProjectList.get(0), finishedProjectList.get(1));
 
 
         // print results
@@ -144,15 +169,36 @@ public class ProjectBuildTest {
         System.out.println("Project Ref : " + finishedProjectList.get(1).getProjectReference() + " Project Delay = " + finishedProjectList.get(1).getDelay());
 
         System.out.println("results:");
-        // iterate trhough map
-        for (Map.Entry<String, List<FinishedActivity>> entry : result.entrySet()) {
+
+        List<Integer> results = new ArrayList<>();
+
+        // iterate trhough resultMap map
+        for (Map.Entry<String, List<FinishedActivity>> entry : resultMap.entrySet()) {
+
+            int delay = entry.getValue().get(0).getDelay();
+
             System.out.println("   prj.Ref = " + entry.getValue().get(0).getProjectReference() +
-                    " / " + entry.getKey() + "/" + " activity delay = " + entry.getValue().get(0).getDelay());
+                    " / " + entry.getKey() + "/" + " Activity Delay = " + delay);
+
+            //store results for Analise for test checking
+            results.add(delay);
         }
 
 
+        // check Project P1 and P4 (both with common activity Analise)
+
+        for (int i = 0; i < results.size(); i++) {
+            assertEquals(results.get(0).intValue(), 4);
+            assertEquals(results.get(1).intValue(), 3);
+            assertEquals(results.get(2).intValue(), 3);
+            assertEquals(results.get(3).intValue(), 1);
+            assertEquals(results.get(4).intValue(), 8);
+            assertEquals(results.get(5).intValue(), 2);
+            assertEquals(results.get(6).intValue(), 12);
+        }
     }
 
-
-
 }
+
+
+

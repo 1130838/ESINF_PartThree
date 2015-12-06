@@ -13,6 +13,14 @@ public class FinishedActivity implements Comparable<FinishedActivity> {
     private int duration;
     private int delay;
 
+    /**
+     * FinishedActivity Constructor
+     * @param projReference
+     * @param activityCode
+     * @param activityType
+     * @param duration
+     * @param delay
+     */
     public FinishedActivity(String projReference, String activityCode, String activityType, int duration, int delay) {
         this.projectReference = projReference;
         this.activityCode = activityCode;
@@ -76,6 +84,9 @@ public class FinishedActivity implements Comparable<FinishedActivity> {
     }
 
     @Override
+    /**
+     * compareTo method to comapre delay values
+     */
     public int compareTo(FinishedActivity other) {
         String thisStr = this.getDelay() + this.getProjectReference() + this.getActivityCode();
         String otherString = other.getDelay() + other.getProjectReference() + other.getActivityCode();

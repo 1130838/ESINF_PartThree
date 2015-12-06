@@ -15,10 +15,18 @@ public class ProjectBuild {
     public TreeFinishedActivity activityTree;
 
 
+    /**
+     *
+     * @return project Tree
+     */
     public TreeFinishedProject getProjectTree() {
         return projectTree;
     }
 
+    /**
+     *
+     * @return activityTree
+     */
     public TreeFinishedActivity getActivityTree() {
         return activityTree;
     }
@@ -26,7 +34,7 @@ public class ProjectBuild {
 
     /**
      * Given a specific file for finished activities and for finished projects
-     * this method will extract the data and create a BST for each.
+     * this method will extract the data and create a BST for projects and another for its activities.
      *
      * @param projectFileName
      * @param activityFileName
@@ -39,6 +47,12 @@ public class ProjectBuild {
 
     }
 
+    /**
+     * Test to return the late activity of 2 projects sharing the same activity
+     * @param p1
+     * @param p2
+     * @return finalMap
+     */
     public Map<String, List<FinishedActivity>> lateActivitiesOfTwoProjects(FinishedProject p1, FinishedProject p2) {
 
         if (p1.getDelay() == 0 || p2.getDelay() == 0) { /*both projects must have delay*/

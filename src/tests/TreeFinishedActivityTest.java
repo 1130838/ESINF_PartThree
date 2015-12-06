@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import java.util.*;
 
+import static junit.framework.Assert.assertTrue;
+
 /**
  * Created by bruno.devesa on 05/12/2015.
  */
@@ -26,6 +28,12 @@ public class TreeFinishedActivityTest {
     }
 
     @Test
+    /**
+     * This test pretends to validate the return of the method wich is suposed to return all the activities of a project
+     * ordered by the project delay value.
+     * The test is performed storing the project delays values and comparing all the values in wich
+     * the value of the next is always bigger then the value of the previous project.
+     */
     public void testPrintProjectsAndActivitiesByOrderOfDelayTime() throws Exception {
 
         // import project from file
@@ -70,7 +78,7 @@ public class TreeFinishedActivityTest {
             // adds project to the list
             finishedProjectList.add(finishedProjectTemp);
 
-           // System.out.println("Project " + finishedProjectTemp.getProjectReference() + "Project Delay = " + finishedProjectTemp.getDelay());
+            // System.out.println("Project " + finishedProjectTemp.getProjectReference() + "Project Delay = " + finishedProjectTemp.getDelay());
 
             // fill the allActivitiesFromProject with the method
             allActivitiesFromProject = treeFinishedActivity.PrintProjectsAndActivitiesByOrderOfDelayTime(finishedProjectTemp);
@@ -86,7 +94,14 @@ public class TreeFinishedActivityTest {
 
 
         System.out.println("-- Print all projects and its activities by order of project delay time --");
+        System.out.println("results:");
+
+        // list of results to check in AssertTrue
+        List<Integer> results = new ArrayList<>();
+
         for (int i = 0; i < finalList.size(); i++) {
+
+            results.add(finishedProjectList.get(i).getDelay());
 
             System.out.println("Project Ref : " + finishedProjectList.get(i).getProjectReference() + " Project Delay = " + finishedProjectList.get(i).getDelay());
 
@@ -95,11 +110,16 @@ public class TreeFinishedActivityTest {
                         "/" + entry.getKey() + "/" + " delay = " + entry.getValue().get(0).getDelay());
             }
             System.out.println("---------------------------------------------------");
+
+        }
+
+        System.out.println("delay check:");
+        for (int i =1; i <  results.size(); i++) {
+            System.out.println(results.get(i) + " >  " + results.get(i-1));
+            assertTrue(results.get(i) > results.get(i - 1 ));
+
         }
     }
 
-    @Test
-    public void testEquals() throws Exception {
 
-    }
 }

@@ -210,21 +210,6 @@ public class BST<E extends Comparable<E>> {
                 return node.getElement();
             return smallestElement( node.left );
 
-
-
-        /*
-
-        if (node.getElement() == null){
-            return null;
-        }
-        if (node.getLeft() == null){
-            return node.getElement();
-        }
-        else{
-            return smallestElement(node.getLeft());
-        }
-*/
-
        // throw new UnsupportedOperationException("Not supported yet.");
     }
     //****************************************************************
